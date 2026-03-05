@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miles of Gratitude</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#" onclick="showTab('home')">Miles of Gratitude</a>
+      <nav class="site-nav">
+        <button class="nav-link active" onclick="showTab('home')">Home</button>
+        <button class="nav-link" onclick="showTab('find')">Find a Run</button>
+        <button class="nav-link" onclick="showTab('write')">Write to Us</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HOME -->
+  <main id="tab-home" class="tab-content active">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1 class="hero-title">Miles of Gratitude</h1>
+        <p class="hero-subtitle">A sunrise run in honour of the women who clean our cities.</p>
+        <p class="hero-body">
+          Before most of us wake, they are already at work.<br />
+          On Women's Day, we choose to begin where they begin.
+        </p>
+        <button class="btn" onclick="showTab('find')">Find a Run</button>
+      </div>
+    </section>
+
+    <!-- What Is -->
+    <section class="section">
+      <div class="container narrow">
+        <h2>What Is Miles of Gratitude?</h2>
+        <p>Miles of Gratitude is a community-led sunrise run held on International Women's Day.</p>
+        <p>We run through neighbourhood streets and pause at sanitation worker assembly points to offer chocolates and sweets as a small gesture of appreciation.</p>
+        <p class="trio">
+          It is simple.<br />
+          It is intentional.<br />
+          It is a thank you — spoken directly.
+        </p>
+      </div>
+    </section>
+
+    <!-- Why This Matters -->
+    <section class="section section-tinted">
+      <div class="container narrow">
+        <h2>Why This Matters</h2>
+        <p>Women's Day is often celebrated in offices, conferences, and campaigns.</p>
+        <p>But long before those events begin, thousands of women are already working — sweeping streets, clearing waste, and preparing neighbourhoods for the day ahead.</p>
+        <p>In cities like Bangalore, many sanitation workers under the Bruhat Bengaluru Mahanagara Palike (BBMP) are women. Their labour is essential and often unseen.</p>
+        <p class="highlight-line">Miles of Gratitude begins at dawn — in the hour they hold.</p>
+      </div>
+    </section>
+
+    <!-- What We Do -->
+    <section class="section">
+      <div class="container narrow">
+        <h2>What We Do</h2>
+        <p>At around 6:00 AM, small groups gather for a 3–7 km run.</p>
+        <p>Along the route, we pause briefly at identified sanitation worker gathering points.</p>
+        <p>We:</p>
+        <ul class="clean-list">
+          <li>Offer chocolates and sweets</li>
+          <li>Wish them a meaningful Women's Day</li>
+          <li>Keep interactions respectful and brief</li>
+          <li>Ask for consent before photos</li>
+          <li>Ensure we do not interrupt work</li>
+        </ul>
+        <p class="trio">
+          No speeches.<br />
+          No banners.<br />
+          No spectacle.
+        </p>
+        <p class="highlight-line">Just presence.</p>
+      </div>
+    </section>
+
+    <!-- Closing -->
+    <section class="section closing-section">
+      <div class="container narrow center">
+        <p class="closing-quote">Dawn belongs to her.<br />On Women's Day, we run in gratitude.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FIND A RUN -->
+  <main id="tab-find" class="tab-content">
+
+    <section class="hero hero-small">
+      <div class="container hero-inner">
+        <h1 class="hero-title">Find a Run Near You</h1>
+        <p class="hero-body">
+          If there is already a run happening in your city, we invite you to join.<br /><br />
+          Show up. Move with intention. Pause where the city begins.<br /><br />
+          You don't need to be a seasoned runner.<br />
+          You just need to care.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container narrow">
+        <h2>Upcoming Runs</h2>
+        <div id="runs-container">
+          <p id="runs-loading" style="color:#888;font-style:italic;">Loading runs…</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tinted">
+      <div class="container narrow">
+        <h2>Don't See Your City?</h2>
+        <p>Miles of Gratitude grows one city at a time.</p>
+        <p>If there isn't a run listed in your area yet, you can organise one.</p>
+        <p>You will need:</p>
+        <ul class="clean-list">
+          <li>A safe sunrise route (3–7 km)</li>
+          <li>Identified sanitation worker assembly points</li>
+          <li>Chocolates, sweets, or anything small you want to offer</li>
+          <li>A commitment to respect</li>
+          <li>Ask your friends if they want to join!</li>
+        </ul>
+        <button class="btn btn-outline" onclick="showTab('write')">Write to Us to Host a Run</button>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container narrow">
+        <h2>Before You Join or Host</h2>
+        <p>Please remember:</p>
+        <ul class="clean-list">
+          <li>Keep groups small and manageable.</li>
+          <li>Do not interrupt workers while they are actively working.</li>
+          <li>Always ask for consent before photographs.</li>
+          <li>Avoid blocking roads or creating inconvenience.</li>
+          <li>Keep the focus on gratitude, not attention.</li>
+        </ul>
+        <p class="highlight-line">Miles of Gratitude is quiet by design.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- WRITE TO US -->
+  <main id="tab-write" class="tab-content">
+
+    <section class="hero hero-small">
+      <div class="container hero-inner">
+        <h1 class="hero-title">Write to Us</h1>
+        <p class="hero-body">
+          Miles of Gratitude began with a simple thought —<br />
+          what would Women's Day look like if we began it at dawn?<br /><br />
+          If you would like to join a run, host one in your city, collaborate,<br />
+          or simply share your thoughts, we would love to hear from you.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container narrow">
+        <form class="contact-form" action="https://formspree.io/f/xpqyawak" method="POST">
+
+          <input type="hidden" name="_subject" value="New Miles of Gratitude message" />
+
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name" />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="your@email.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number <span class="optional">(optional)</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="+91 00000 00000" />
+          </div>
+
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" required placeholder="Your city" />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us what's on your mind…"></textarea>
+          </div>
+
+          <div class="form-group">
+            <p class="checkbox-label-header">I am interested in:</p>
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" name="intent" value="join" />
+                <span>Joining a run</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="intent" value="host" />
+                <span>Hosting a run</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="intent" value="volunteer" />
+                <span>Volunteering</span>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn">Send</button>
+        </form>
+
+        <div id="form-success" class="form-success hidden">
+          <p>Miles of Gratitude grows slowly and intentionally.<br />One dawn. One street. One city at a time.</p>
+          <p>Thank you for writing to us.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-brand">Miles of Gratitude</p>
+      <p class="footer-tagline">A community-led Women's Day initiative.</p>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">Email</a>
+      </div>
+      <p class="footer-copy">© 2026 Miles of Gratitude</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
