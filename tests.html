@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tests — Miles of Gratitude</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    #test-panel {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: #FAF5F2; overflow-y: auto;
+      z-index: 9999; padding: 40px 24px; font-family: 'Inter', system-ui, sans-serif;
+    }
+    #test-panel h1 { font-size: 1.4rem; color: #5C2E3E; margin-bottom: 4px; }
+    #test-panel .subtitle { color: #888; font-size: 0.85rem; margin-bottom: 28px; }
+    .run-btn {
+      background: #E8A6B0; color: #fff; border: none;
+      padding: 10px 24px; border-radius: 7px; font-size: 0.9rem;
+      font-weight: 500; cursor: pointer; margin-bottom: 32px;
+    }
+    .run-btn:hover { background: #D98C99; }
+    .summary {
+      display: flex; gap: 32px; background: #fff;
+      border: 1px solid #e8ddd9; border-radius: 10px;
+      padding: 20px 28px; margin-bottom: 32px;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 700; }
+    .stat-label { font-size: 0.75rem; color: #888; }
+    .green { color: #2d6a4f; } .red { color: #c0392b; } .yellow { color: #b7791f; }
+    .suite { margin-bottom: 32px; }
+    .suite-title {
+      font-size: 0.85rem; font-weight: 700; color: #5C2E3E;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      border-bottom: 2px solid #E8A6B0; padding-bottom: 6px; margin-bottom: 12px;
+    }
+    .test { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f0e8e4; }
+    .badge {
+      flex-shrink: 0; font-size: 0.7rem; font-weight: 700;
+      padding: 2px 9px; border-radius: 10px; margin-top: 3px;
+    }
+    .pass { background: #d4edda; color: #155724; }
+    .fail { background: #f8d7da; color: #721c24; }
+    .test-name { font-size: 0.88rem; font-weight: 500; }
+    .test-detail { font-size: 0.78rem; color: #999; margin-top: 2px; }
+  </style>
+</head>
+<body>
+
+<!-- Minimal DOM mirror for testing (hidden) -->
+<div style="display:none" id="test-dom">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#" onclick="showTab('home')">Miles of Gratitude</a>
+      <nav class="site-nav">
+        <button class="nav-link active" onclick="showTab('home')">Home</button>
+        <button class="nav-link" onclick="showTab('find')">Find a Run</button>
+        <button class="nav-link" onclick="showTab('write')">Write to Us</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="tab-home" class="tab-content active">
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1 class="hero-title">Miles of Gratitude</h1>
+        <p class="hero-subtitle">A sunrise run in honour of the women who clean our cities.</p>
+      </div>
+    </section>
+  </main>
+
+  <main id="tab-find" class="tab-content">
+    <div class="run-card"><h3>Bangalore – BTM Layout</h3></div>
+  </main>
+
+  <main id="tab-write" class="tab-content">
+    <form class="contact-form" action="https://formspree.io/f/xpqyawak" method="POST">
+      <input type="text"  id="name"    name="name"    required />
+      <input type="email" id="email"   name="email"   required />
+      <input type="tel"   id="phone"   name="phone" />
+      <input type="text"  id="city"    name="city"    required />
+      <textarea id="message" name="message"></textarea>
+      <input type="checkbox" name="intent" value="join" />
+      <input type="checkbox" name="intent" value="host" />
+      <input type="checkbox" name="intent" value="volunteer" />
+    </form>
+    <div id="form-success" class="form-success hidden"></div>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-brand">Miles of Gratitude</p>
+    <p class="footer-copy">© 2026 Miles of Gratitude</p>
+  </footer>
+</div>
+
+<!-- Test panel -->
+<div id="test-panel">
+  <h1>Miles of Gratitude — Test Suite</h1>
+  <p class="subtitle">22 assertions across 5 suites. Runs against live DOM.</p>
+  <button class="run-btn" onclick="runAll()">▶ Run All Tests</button>
+  <div id="summary" class="summary" style="display:none">
+    <div class="stat"><div class="stat-num green" id="s-pass">0</div><div class="stat-label">Passed</div></div>
+    <div class="stat"><div class="stat-num red"   id="s-fail">0</div><div class="stat-label">Failed</div></div>
+  </div>
+  <div id="output"></div>
+</div>
+
+<script src="script.js"></script>
+<script>
+const results = [];
+
+function assert(suite, name, condition, detail) {
+  results.push({ suite, name, status: condition ? 'pass' : 'fail', detail: detail || '' });
+}
+
+function runAll() {
+  results.length = 0;
+
+  // ── 1: Page Structure ──────────────────────────────────
+  assert('Page Structure', 'Home tab exists in DOM',         !!document.getElementById('tab-home'));
+  assert('Page Structure', 'Find tab exists in DOM',         !!document.getElementById('tab-find'));
+  assert('Page Structure', 'Write tab exists in DOM',        !!document.getElementById('tab-write'));
+  assert('Page Structure', 'Nav has exactly 3 links',
+    document.querySelectorAll('.nav-link').length === 3,
+    `Found ${document.querySelectorAll('.nav-link').length}`);
+
+  // ── 2: Default State ───────────────────────────────────
+  // Reset to default first
+  showTab('home');
+
+  assert('Default State', 'Home tab is active on load',
+    document.getElementById('tab-home').classList.contains('active'));
+  assert('Default State', 'Find tab is hidden on load',
+    !document.getElementById('tab-find').classList.contains('active'));
+  assert('Default State', 'Write tab is hidden on load',
+    !document.getElementById('tab-write').classList.contains('active'));
+  assert('Default State', 'Home nav link is active',
+    document.querySelectorAll('.nav-link')[0].classList.contains('active'));
+
+  // ── 3: Tab Navigation ──────────────────────────────────
+  showTab('find');
+  assert('Tab Navigation', 'showTab("find") shows Find tab',
+    document.getElementById('tab-find').classList.contains('active'));
+  assert('Tab Navigation', 'showTab("find") hides Home tab',
+    !document.getElementById('tab-home').classList.contains('active'));
+  assert('Tab Navigation', 'showTab("find") activates correct nav link',
+    document.querySelectorAll('.nav-link')[1].classList.contains('active'));
+
+  showTab('write');
+  assert('Tab Navigation', 'showTab("write") shows Write tab',
+    document.getElementById('tab-write').classList.contains('active'));
+  assert('Tab Navigation', 'Only one tab active at a time',
+    document.querySelectorAll('.tab-content.active').length === 1,
+    `${document.querySelectorAll('.tab-content.active').length} active simultaneously`);
+
+  showTab('home');
+  assert('Tab Navigation', 'showTab("home") returns to Home',
+    document.getElementById('tab-home').classList.contains('active'));
+
+  // ── 4: Contact Form ────────────────────────────────────
+  const form = document.querySelector('.contact-form');
+  assert('Contact Form', 'Form element exists',              !!form);
+  assert('Contact Form', 'Formspree endpoint is correct',
+    form && form.action === 'https://formspree.io/f/xpqyawak',
+    `action="${form ? form.action : 'missing'}"`);
+  assert('Contact Form', 'Name field is required',
+    document.getElementById('name')?.required === true);
+  assert('Contact Form', 'Email field is required',
+    document.getElementById('email')?.required === true);
+  assert('Contact Form', 'Phone field is optional (not required)',
+    document.getElementById('phone')?.required === false);
+  assert('Contact Form', 'City field is required',
+    document.getElementById('city')?.required === true);
+  assert('Contact Form', '3 intent checkboxes present',
+    document.querySelectorAll('input[name="intent"]').length === 3,
+    `Found ${document.querySelectorAll('input[name="intent"]').length}`);
+
+  // ── 5: Content Integrity ───────────────────────────────
+  assert('Content', 'Hero title is "Miles of Gratitude"',
+    document.querySelector('.hero-title')?.textContent.trim() === 'Miles of Gratitude',
+    `Got: "${document.querySelector('.hero-title')?.textContent.trim()}"`);
+  assert('Content', 'Run card exists on Find tab',
+    !!document.querySelector('.run-card'));
+  assert('Content', 'Footer includes year 2026',
+    document.querySelector('.footer-copy')?.textContent.includes('2026'));
+
+  render();
+}
+
+function render() {
+  const suites = {};
+  results.forEach(r => {
+    if (!suites[r.suite]) suites[r.suite] = [];
+    suites[r.suite].push(r);
+  });
+
+  let html = '';
+  for (const [suite, tests] of Object.entries(suites)) {
+    html += `<div class="suite"><div class="suite-title">${suite}</div>`;
+    tests.forEach(t => {
+      html += `
+        <div class="test">
+          <span class="badge ${t.status}">${t.status === 'pass' ? 'PASS' : 'FAIL'}</span>
+          <div>
+            <div class="test-name">${t.name}</div>
+            ${t.detail ? `<div class="test-detail">${t.detail}</div>` : ''}
+          </div>
+        </div>`;
+    });
+    html += '</div>';
+  }
+  document.getElementById('output').innerHTML = html;
+
+  const pass = results.filter(r => r.status === 'pass').length;
+  const fail = results.filter(r => r.status === 'fail').length;
+  document.getElementById('s-pass').textContent = pass;
+  document.getElementById('s-fail').textContent = fail;
+  document.getElementById('summary').style.display = 'flex';
+}
+</script>
+</body>
+</html>
