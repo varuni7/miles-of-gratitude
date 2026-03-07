@@ -306,6 +306,120 @@ body {
   color: var(--charcoal);
 }
 
+.run-location-link {
+  color: var(--dawn-pink);
+  text-decoration: none;
+}
+
+.run-location-link:hover {
+  text-decoration: underline;
+}
+
+/* ─── GRATITUDE CALLOUT ──────────────────────────────────── */
+.gratitude-callout {
+  margin-top: 36px;
+  padding: 28px 32px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+}
+
+.gratitude-callout::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--dawn-pink);
+  margin: 0 auto 18px;
+  border-radius: 2px;
+}
+
+.gratitude-callout::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--dawn-pink);
+  margin: 18px auto 0;
+  border-radius: 2px;
+}
+
+.gratitude-callout-text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 2.8vw, 1.65rem);
+  font-style: italic;
+  color: var(--plum);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+/* ─── INFO CARD ──────────────────────────────────────────── */
+.info-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin-top: 32px;
+}
+
+.info-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.info-icon {
+  color: var(--dawn-pink);
+  flex-shrink: 0;
+}
+
+.info-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--plum);
+}
+
+.info-card-body {
+  font-size: 0.9rem;
+  color: var(--charcoal-mid);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.info-times-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.info-times-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+}
+
+.time-label {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--plum);
+  min-width: 72px;
+}
+
+.time-desc {
+  font-size: 0.875rem;
+  color: var(--charcoal-mid);
+}
+
 /* ─── FORM ───────────────────────────────────────────────── */
 .contact-form {
   display: flex;

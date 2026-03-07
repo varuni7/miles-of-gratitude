@@ -48,7 +48,10 @@ async function loadRuns() {
         <div class="run-meta">
           <span>📅 ${run.date}</span>
           <span>⏰ ${run.time}${run.timezone ? ' ' + run.timezone : ''}</span>
-          <span>📍 ${run.location}</span>
+          <span>📍 ${run.locationurl
+            ? `<a class="run-location-link" href="${run.locationurl}" target="_blank" rel="noopener">${run.location}</a>`
+            : `<a class="run-location-link" href="https://www.google.com/maps/search/${encodeURIComponent(run.location + ' ' + run.city)}" target="_blank" rel="noopener">${run.location}</a>`
+          }</span>
           <span>~${run.distance}</span>
         </div>
         <p>${run.description || 'This run will move through nearby streets and pause at sanitation worker assembly points to offer chocolates and sweets.'}</p>
