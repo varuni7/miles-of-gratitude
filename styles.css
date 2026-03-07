@@ -315,6 +315,14 @@ body {
   text-decoration: underline;
 }
 
+/* ─── TEXT HIGHLIGHT ─────────────────────────────────────── */
+.text-highlight {
+  background: none;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* ─── GRATITUDE CALLOUT ──────────────────────────────────── */
 .gratitude-callout {
   margin-top: 36px;
