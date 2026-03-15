@@ -6,7 +6,8 @@
       "Bash(git commit -m \"Initial commit — Miles of Gratitude website\")",
       "Bash(git remote add origin git@github.com:varuni7/miles-of-gratitude.git)",
       "Bash(git branch -m main)",
-      "Bash(git push -u origin main)"
+      "Bash(git push -u origin main)",
+      "Bash(find /Users/varuni/Documents/miles_of_gratitude -type f ! -path */.*)"
     ]
   }
 }

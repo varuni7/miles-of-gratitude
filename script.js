@@ -11,7 +11,7 @@ function showTab(name) {
   if (tab) tab.classList.add('active');
 
   const navLinks = document.querySelectorAll('.nav-link');
-  const tabIndex = { home: 0, find: 1, write: 2 };
+  const tabIndex = { home: 0, find: 1, footsteps: 2, origin: 3, write: 4 };
   const idx = tabIndex[name];
   if (navLinks[idx] !== undefined) navLinks[idx].classList.add('active');
 
